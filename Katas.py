@@ -3,7 +3,7 @@
 de cada letra en la cadena. Los espacios no deben ser considerados."""
 
 def frecuencia_letras()
-def frecuencia_letras()
+
 """K.2)Dada una lista de números, obtén una nueva lista con el doble de cada valor. Usa la función  map()""" 
 
 """K.3)Escribe una función que tome una lista de palabras y una palabra objetivo como parámetros. La función debe 
