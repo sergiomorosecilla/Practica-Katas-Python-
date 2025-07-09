@@ -34,4 +34,23 @@ print(resultado)
 # 2) Dada una lista de números, obtén una nueva lista con el doble de cada valor. 
 # Usa la función map()
 
+def doblar_valor(numeros):
+    '''
+    Esta función recibe una lista de números y devuelve una nueva lista 
+    con el doble de cada valor.
+    
+    Parámetros:
+        -numeros (list): Lista de números a procesar.
+    
+    Return:
+        -list: Nueva lista con el doble de cada número.
+    '''
+# Aplicamos un función lambda a cada elemento de la lista. Como el resultado de la función 
+# map() es un objeto, lo convertimos a una lista para que nos muestre un resultado legible.  
+    return list(map(lambda x: x * 2, numeros)) 
+
+# Ejemplo de uso de la función
+numeros = [1, 2, 3, 4, 5]
+resultado = doblar_valor(numeros)
+print(resultado)
 
