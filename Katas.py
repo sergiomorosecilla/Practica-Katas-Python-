@@ -111,9 +111,9 @@ print(calculo_diferencias)
 # una tupla que contenga la media y el estado.
 def calculo_aprobado(lista_numeros, nota_aprobado=5):
     '''
-    Esta función recibe una lista de números y un valor opcional nota_aprobado, 
+    La función recibe una lista de números y un valor con valor por defecto igual a 5, 
     calcula la media de los números en la lista y determina si la media es mayor o 
-    igual que nota_aprobado. Devuelve una tupla con la media y el estado ("aprobado" o "suspenso").
+    igual que nota_aprobado. Devuelve una tupla con la media y el estado (aprobado/suspenso).
     
     Parámetros:
         -lista_numeros (list): Lista de números a procesar.
@@ -125,8 +125,8 @@ def calculo_aprobado(lista_numeros, nota_aprobado=5):
     if not lista_numeros:  # Verifico si la lista está vacía
         return print("La lista está vacía, no se puede calcular la media ni la calificación.")
     
-    media = sum(lista_numeros) / len(lista_numeros)  # Calcula la media
-    estado = "aprobado" if media >= nota_aprobado else "suspenso"  # Determina el estado
+    media = sum(lista_numeros) / len(lista_numeros)  # Calculo de la media
+    estado = "aprobado" if media >= nota_aprobado else "suspenso"  # Fijamos el estado según los datos
     
     return (media, estado)
 
@@ -137,3 +137,106 @@ print(calificación)
 
 
 # 6) Escribe una función que calcule el factorial de un número de manera recursiva.
+
+def factorial_recursivo(x):
+    '''
+    La función calcula el factorial de un número de manera recursiva.
+    
+    Parámetros:
+        -x (int): Número del cual se desea calcular el factorial.
+    
+    Return:
+        -int: El factorial del número n.
+    '''    
+    if x < 0:
+        return 'Número no permitido. Indica un número positivo'
+    elif x == 0 or x == 1:
+        return 1
+    else:
+        return x * factorial_recursivo(x - 1) # Llamada recursiva
+    
+# Caso de uso:
+numero = 5
+resultado = (factorial_recursivo(numero))
+print(f'El factorial de {numero} es: {resultado}')  
+
+
+# 7) Genera una función que convierta una lista de tuplas a una lista de strings. Usa la función  map()
+
+def tuplas_to_strings(lista_tuplas):
+    '''
+    La función recibe una lista de tuplas y convierte cada tupla en un string.
+    
+    Parámetros:
+        -lista_tuplas (list): Lista de tuplas a convertir.
+    
+    Return:
+        -list: Lista de strings resultante de la conversión de las tuplas.
+    '''
+    return list(map(lambda tupla: str(tupla), lista_tuplas))  # Convierte cada tupla a string
+    #a lo que despues podríamos aplicar un join() si quisiéramos unir los elementos de cada tupla en un solo string o o que veamos conveniente.
+
+# Caso de uso:
+lista_tuplas = [(1, 2), (3, 4), (5, 6)]
+resultado = tuplas_to_strings(lista_tuplas) 
+print(f'La lista de strings resultante es: {resultado}') 
+
+# 8) Escribe un programa que pida al usuario dos números e intente dividirlos. Si el usuario ingresa un valor no numérico 
+# o intenta dividir por cero, maneja esas excepciones de manera adecuada. Asegúrate de mostrar un mensaje 
+# indicando si la división fue exitosa o no.
+
+def dividir_numeros():
+    '''
+    La función recibe solicita dos números e intenta dividirlos. Manejamos excepciones 
+    para valores no numéricos y división por cero.
+    
+    Parámetros:
+        -num1 (float): Primer número.
+        -num2 (float): Segundo número.
+    
+    Return:
+        -str: Mensaje indicando si la división fue exitosa o no.
+    '''
+    # Solicito los números al usuario convietiendolos a float para poder hacer la división 
+    # y los envuelvo en un try-except-else para manejar excepciones
+    try:
+        print(f'Ingresa dos números y te daremos el resultado de la división')
+        num1 = float(input("Introduce el primer número: "))
+        num2 = float(input("Introduce el segundo número: "))
+        resultado = num1 / num2
+    except ValueError:
+        return print(f'Error: Entrada no válida, por favor ingresa números.')
+    except ZeroDivisionError:
+        return print(f'Error: No se puede dividir por cero.')
+    else:
+        return print(f'El resultado de la división: {round(resultado, 2)}') #pedimos que el resultado se redondee a dos decimales
+# Orden para poder ejectuar el programa directamente, si se le nombra, ya que no lo importamos.    
+if __name__ == "__main__":
+    dividir_numeros() 
+
+
+# 9)Escribe una función que tome una lista de nombres de mascotas como parámetro y devuelva una nueva lista 
+# excluyendo ciertas mascotas prohibidas en España. La lista de mascotas a excluir es ["Mapache", "Tigre", 
+# "Serpiente Pitón", "Cocodrilo", "Oso"].Usa la función  filter()
+
+def mascotas_permitidas(mascotas):
+    '''
+    La función recibe una lista de nombres de mascotas y devuelve una nueva lista 
+    excluyendo ciertas mascotas prohibidas en España.
+    
+    Parámetros:
+        -mascotas (list): Lista de nombres de mascotas a filtrar.
+    
+    Return:
+        -list: Nueva lista con las mascotas permitidas, excluyendo las no permitidas.
+    '''
+    # Lista de mascotas prohibidas
+    mascotas_prohibidas = ["Mapache", "Tigre", "Serpiente Pitón", "Cocodrilo", "Oso"] 
+    # devolvemos un print del resultado de un filter() para filtrar con una función lambda
+    # las mascotas que no están en la lista de prohibidas, convirtiendolo a lista
+    return print(list(filter(lambda mascota: mascota not in mascotas_prohibidas, mascotas)))
+
+# Caso de uso:
+mascotas = ["Mapache", "Perro", "Gato", "Serpiente Pitón", "Conejo", "Cocodrilo", "Oso", "Hamster"]
+mascotas_permitidas(mascotas) 
+
