@@ -240,3 +240,86 @@ def mascotas_permitidas(mascotas):
 mascotas = ["Mapache", "Perro", "Gato", "Serpiente Pitón", "Conejo", "Cocodrilo", "Oso", "Hamster"]
 mascotas_permitidas(mascotas) 
 
+    
+# 10) Escribe una función que reciba una lista de números y calcule su promedio. Si la lista está vacía, 
+# lanza una excepción personalizada y maneja el error adecuadamente.
+
+class ListaVaciaError(Exception): #consultado en IA, como crear una excepción personalizada
+    pass  # Definimos una excepción personalizada llamada ListaVacia
+
+def calcular_promedio(lista_numeros):     
+    '''
+    La función recibe una lista de números y calcula su promedio. Si la lista está vacía, 
+    lanza una excepción personalizada y maneja el error adecuadamente.
+    
+    Parámetros:
+        -numeros (list): Lista de números a procesar.
+    
+    Return:
+        -float: Promedio de los números en la lista.
+
+    Control excepciones:
+        - Excepción personalizada "ListaVacíaError": Si la lista está vacía.
+    '''
+    try:
+        if not lista_numeros:
+            raise ListaVaciaError("La lista está vacía, no se puede calcular el promedio.")
+        promedio = sum(lista_numeros) / len(lista_numeros)  # Calcula el promedio
+        print(f'El promedio de la lista es: {promedio}')  # Imprime el promedio
+   # Si entra la excepción personalizada, esta parte la recoge y muestra el mensaje de error
+    except ListaVaciaError as e:
+        print(e) 
+
+
+# 11)Escribe un programa que pida al usuario que introduzca su edad. Si el usuario ingresa un valor 
+# no numérico o un valor fuera del rango esperado (por ejemplo, menor que 0 o mayor que 120), maneja las 
+# excepciones adecuadamente.
+def pedir_edad():
+    '''
+    La función solicita al usuario que introduzca su edad y maneja excepciones 
+    para valores no numéricos o fuera del rango esperado.
+    
+    Parámetros:
+        -edad (int): Edad introducida por el usuario.
+    
+    Return:
+        -str: Mensaje indicando si la edad es válida o no.
+    '''
+    try:
+        edad = int(input("Por favor, introduce tu edad: "))
+        if edad < 0 or edad > 120:
+            raise ValueError("Edad fuera del rango esperado (0-120).")
+    except ValueError as e:
+        return print(f'Error: {e}')
+    else:
+        return print(f'Tu edad es: {edad}')
+
+# 12)Genera una función que al recibir una frase devuelva una lista con la longitud de cada palabra. 
+# Usa la función  map()
+
+def longitud_palabras(frase):
+    '''
+    La función recibe una frase y devuelve una lista con la longitud de cada palabra.
+    
+    Parámetros:
+        -frase (str): Frase a procesar.
+    
+    Return:
+        -list: Lista con la longitud de cada palabra en la frase.
+    '''
+    # Utilizamos map() para aplicar la función len a cada palabra de la frase
+    # Primero dividimos la frase en palabras usando split() y luego aplicamos len a cada palabra
+    longitudes = list(map(lambda palabra: len(palabra), frase.split())) 
+    return longitudes
+
+#caso de uso:
+frase1 = "Hola mundo esto es una prueba"
+print(longitud_palabras(frase1))  
+
+
+
+
+
+  
+    
+    
