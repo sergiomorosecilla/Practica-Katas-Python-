@@ -243,7 +243,6 @@ mascotas_permitidas(mascotas)
     
 # 10) Escribe una función que reciba una lista de números y calcule su promedio. Si la lista está vacía, 
 # lanza una excepción personalizada y maneja el error adecuadamente.
-
 class ListaVaciaError(Exception): #consultado en IA, como crear una excepción personalizada
     pass  # Definimos una excepción personalizada llamada ListaVacia
 
@@ -294,6 +293,7 @@ def pedir_edad():
     else:
         return print(f'Tu edad es: {edad}')
 
+
 # 12)Genera una función que al recibir una frase devuelva una lista con la longitud de cada palabra. 
 # Usa la función  map()
 
@@ -317,9 +317,97 @@ frase1 = "Hola mundo esto es una prueba"
 print(longitud_palabras(frase1))  
 
 
+# 13) Genera una función la cual, para un conjunto de caracteres, devuelva una lista de tuplas con cada letra en 
+# mayusculas y minúsculas. Las letras no pueden estar repetidas .Usa la función  map()
+def letras_mayus_minus(caracteres):
+    '''
+    La función recibe un conjunto de caracteres y devuelve una lista de tuplas 
+    con cada letra en mayúsculas y minúsculas, sin repeticiones.
+    
+    Parámetros:
+        -caracteres (str): Conjunto de caracteres a procesar.
+    
+    Return:
+        -list: Lista de tuplas con cada letra en mayúsculas y minúsculas.
+    '''
+    # Utilizamos set() para eliminar duplicados 
+    letras = set(caracteres)
+    return list(map(lambda letra: (letra.upper(), letra.lower()), letras))  # Con función lamda marcamos una lista que
+    #englobe el map() que tendrá por tanto una lista con tuplas de parejas de los en mayuscula y minuscula
+     
+# Caso de uso:
+conjunto_caracteres = "3abcaBC123"
+
+print(letras_mayus_minus(conjunto_caracteres))
 
 
+# 14) Crea una función que retorne las palabras de una lista de palabras que comience con una letra en 
+# especifico. Usa la función filter()
 
-  
+def palabras_con_letra(palabras, letra):
+    '''
+    La función recibe una lista de palabras y una letra, y devuelve una lista 
+    con las palabras que comienzan con la letra especificada.
+    
+    Parámetros:
+        -palabras (list): Lista de palabras a filtrar.
+        -letra (str): Letra con la que deben comenzar las palabras.
+    
+    Return:
+        -list: Lista de palabras que comienzan con la letra especificada.
+    '''
+    # Utilizamos filter() para filtrar las palabras que comienzan con la letra especificada
+    return list(filter(lambda palabra: palabra.startswith(letra), palabras))
+    # Observación: la mayoría de los casos que vemos hasta ahora se pueden solucionar con bucles FOR como 
+    # en este caso:
+    #      resultado = []
+    #   for palabra in palabras:
+    #       if palabra.startswith(letra):
+    #           resultado.append(palabra)
+    #   return resultado
+    # Las funciones lambda y en este caso filter() son más concisas, aunque pueden ser a veces menos legibles para principiantes 
+    # y se pueden ser complejas si no lo fragmentamos.
+
+#Caso de uso:
+lista_palabras = ["manzana", "banana", "cereza", "mango", "pera"]
+print(palabras_con_letra(lista_palabras, "m"))  # Salida: ['manzana', 'mango']
+
+
+# 15) Crea una función  lambda  que  sume 3 a cada número de una lista dada.
+def suma_tres(lista_numeros):
+    '''
+    La función recibe una lista de números y devuelve una nueva lista 
+    con 3 sumados a cada número.
+    
+    Parámetros:
+        -lista_numeros (list): Lista de números a procesar.
+    
+    Return:
+        -list: Nueva lista con 3 sumados a cada número.
+    '''
+    return list(map(lambda x: x + 3, lista_numeros))
+
+
+# 16) Escribe una función que tome una cadena de texto y un número entero n como parámetros y devuelva una lista 
+# de todas las palabras que sean más largas que n. Usa la función  filter()
+def palabras_mas_largas(cadena, n):
+    '''
+    La función recibe una cadena de texto y un número entero n, y devuelve una lista 
+    de todas las palabras que son más largas que n.
+    
+    Parámetros:
+        -cadena (str): Cadena de texto a procesar.
+        -n (int): Número entero que define la longitud mínima de las palabras.
+    
+    Return:
+        -list: Lista de palabras que son más largas que n.
+    '''
+    # Dividimos la cadena en palabras y usamos filter() para filtrar las palabras más largas que n
+    return list(filter(lambda palabra: len(palabra) > n, cadena.split()))
+
+# Caso de uso:
+cadena_texto = "Esta es una cadena de texto con varias palabras"
+n = 4
+print(palabras_mas_largas(cadena_texto, n))
     
     
