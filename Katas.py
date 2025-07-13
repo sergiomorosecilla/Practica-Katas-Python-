@@ -410,4 +410,108 @@ cadena_texto = "Esta es una cadena de texto con varias palabras"
 n = 4
 print(palabras_mas_largas(cadena_texto, n))
     
+
+# 17) Crea una función que tome una lista de dígitos y devuelva el número correspondiente. Por ejemplo, [5,7,2] 
+# corresponde al número quinientos setenta y dos (572). Usa la función  reduce()
+
+from functools import reduce  #para utilizar la función reduce() debemos importarla desde el módulo functools
+
+def convierte_a_numero(lista_digitos):
+    '''
+    La función recibe una lista de dígitos y devuelve el número correspondiente.
     
+    Parámetros:
+        -lista_digitos (list): Lista de dígitos a convertir.
+    
+    Return:
+        -int: Número correspondiente a la lista de dígitos.
+    '''
+    # Utilizamos reduce() para combinar los dígitos en un solo número con una operación matemática
+    # que multiplica el número acumulado por 10 y le suma el siguiente dígito.
+    numero = reduce(lambda x, y: x * 10 + y, lista_digitos)
+    return numero
+
+# Caso de uso:
+lista_digitos = [5, 7, 2]
+convierte_a_numero(lista_digitos)
+
+
+# 18) Escribe un programa en Python que cree una lista de diccionarios que contenga información de estudiantes 
+# (nombre, edad, calificación) y use la función filter para extraer a los estudiantes con una calificación mayor o igual a 
+# 90.
+
+def calificacion_alta(estudiante): 
+    '''
+    La función recibe una lista de diccionarios con información de estudiantes y 
+    devuelve una lista de estudiantes con calificación mayor o igual a 90.
+    
+    Parámetros:
+        -estudiante (list): Lista de diccionarios con información de estudiantes.
+    
+    Return:
+        -list: Lista de estudiantes aprobados (calificación >= 90).
+    '''
+    # Utilizamos filter() para filtrar los estudiantes con calificación >= 90
+    estudiantes_destacados = list(filter(lambda estudiante: estudiante['calificacion'] >= 90, estudiantes))
+    return estudiantes_destacados
+
+# Caso de uso:
+# Creamos una lista de diccionarios con información de estudiantes
+estudiante = [
+    {"nombre": "Ana García", "edad": 20, "calificacion": 95},
+    {"nombre": "Carlos López", "edad": 19, "calificacion": 87},
+    {"nombre": "María Rodríguez", "edad": 21, "calificacion": 92},
+    {"nombre": "Juan Pérez", "edad": 22, "calificacion": 78},
+    {"nombre": "Laura Martínez", "edad": 20, "calificacion": 96},
+    {"nombre": "Pedro Sánchez", "edad": 19, "calificacion": 89},
+    {"nombre": "Isabel Torres", "edad": 21, "calificacion": 93},
+    {"nombre": "Miguel Herrera", "edad": 20, "calificacion": 85},
+    {"nombre": "Carmen Ruiz", "edad": 22, "calificacion": 90},
+    {"nombre": "Diego Morales", "edad": 19, "calificacion": 88}
+]
+calificacion_alta(estudiante)
+
+
+#19) Crea una función  lambda  que filtre los números impares de una lista dada.
+def filtrar_impares(numeros):
+    '''
+    La función recibe una lista de números y devuelve una nueva lista 
+    con los números impares filtrados.
+    
+    Parámetros:
+        -numeros (list): Lista de números a filtrar.
+    
+    Return:
+        -list: Nueva lista con los números impares.
+    '''
+    impares = list(filter(lambda numero: numero % 2 != 0, numeros))
+    return impares
+
+# Caso de uso:
+numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+filtrar_impares(numeros)
+
+
+# 20) Para una lista con elementos tipo integer y string obtén una nueva lista sólo con los valores int.
+# Usa la función filter()
+
+def filtrar_enteros(lista_enteros_caracteres):
+ 
+    '''
+    La función recibe una lista con elementos de tipo integer y string, 
+    y devuelve una nueva lista sólo con los valores int.
+    
+    Parámetros:
+        -lista_enteros_caracteres (list): Lista de elementos int y string a filtrar.
+    
+    Return:
+        -list: Nueva lista con solo los valores int.
+    '''
+    # Utilizamos filter() para filtrar los elementos que son de tipo int ayudandonos de la función isinstance(),
+    # que he buscando en documentación Python filtrando con Chatgpt.
+    enteros = list(filter(lambda x: isinstance(x, int), lista_enteros_caracteres))
+    return enteros
+
+# Caso de uso:
+lista = [1, 'dos', 3, 'cuatro', 5, 'seis', 7, 'ocho', 9, 'diez']
+filtrar_enteros(lista)
