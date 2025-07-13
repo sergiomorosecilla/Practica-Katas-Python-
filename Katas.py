@@ -577,3 +577,68 @@ palabras = ['Estoy', 'en', 'la', 'mitad', 'de', 'las', 'katas']
 concatena_palabras(palabras) 
 
 
+# 24) Calcula la diferencia total en los valores de una lista. Usa la función  reduce() .
+from functools import reduce
+
+def diferencia_total(lista_numeros):
+    '''
+    La función recibe una lista de números y calcula la diferencia total entre ellos.
+    
+    Parámetros:
+        -lista_numeros (list): Lista de números a procesar.
+    
+    Return:
+        -int: Diferencia total de los valores de la lista.
+    '''
+    if not lista_numeros:  # Verifica si la lista está vacía, buena práctia ya aplicada anteriormente
+        return 0 
+    else:
+        resta = reduce(lambda n1, n2: n1 - n2, lista_numeros)
+        return resta
+
+    # Caso de uso:
+numeros = [10, 5, 2]      
+diferencia_total(numeros)
+
+
+# 25) Crea una función que cuente el número de caracteres en una cadena de texto dada.
+
+def contar_caracteres(cadena):
+     
+    '''
+    La función recibe una cadena de texto y cuenta el número de caracteres en ella.
+    
+    Parámetros:
+        -cadena (str): Cadena de texto a procesar.
+    
+    Return:
+        -int: Número total de caracteres en la cadena.
+    '''
+    cadena = cadena.replace(" ", "")  # Eliminamos los espacios para contar solo los caracteres
+    contador = len(cadena)  # Contamos los caracteres y eliminamos los espacios
+    return contador
+
+# Caso de uso:
+cadena_texto = "Hola, bienvenido a las katas de Python"
+contar_caracteres(cadena_texto)
+
+
+# 26) Crea una función  lambda  que calcule el resto de la división entre dos números dados.
+
+calculo_resto = lambda x, y: x % y
+'''
+    Creamos función lambda que recibe dos números y devuelve el resto de la división entre ellos.
+    
+    Parámetros:
+        -x (int): Primer número.
+        -y (int): Segundo número.
+    
+    Llamada a la función:
+        -calculo_resto(x, y): Devuelve el resto de la división entre x e y.
+    '''
+
+# Caso de uso:
+n1 = 10
+n2 = 9
+calculo_resto(n1, n2) 
+
