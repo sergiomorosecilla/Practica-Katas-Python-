@@ -515,3 +515,65 @@ def filtrar_enteros(lista_enteros_caracteres):
 # Caso de uso:
 lista = [1, 'dos', 3, 'cuatro', 5, 'seis', 7, 'ocho', 9, 'diez']
 filtrar_enteros(lista)
+
+
+# 21) Crea una función que calcule el cubo de un número dado mediante una función  lambda
+
+calculo_cubo = lambda numero: numero ** 3
+'''
+    Creamos función lambda que recibe un número y devuelve su cubo.
+    
+    Parámetros:
+        -numero (int): Número al que se le calculará el cubo.
+    
+    Llamada a la función:
+        -calculo_cubo(numero): Devuelve el cubo del número dado.
+    '''
+# Caso de uso:  
+numero = 3
+calculo_cubo(numero) 
+
+
+# 22) Dada una lista numérica, obtén el producto total de los valores de dicha lista.Usa la función  reduce() 
+from functools import reduce
+
+def producto_total(lista_numeros):
+    '''         
+    La función recibe una lista numérica y devuelve el producto total de los valores de dicha lista.
+    
+    Parámetros:
+        -lista_numeros (list): Lista de números a procesar.
+    
+    Return:
+        -int: Producto total de los valores de la lista.
+    '''
+    producto_total = reduce(lambda n1, n2: n1 * n2, lista_numeros)
+    return producto_total
+
+#Caso de uso:
+lista_producto = [1, 2, 3, 4, 5] 
+producto_total(lista_producto)
+
+
+# 23) Concatena una lista de palabras.Usa la función reduce()
+
+from functools import reduce
+
+def concatena_palabras(palabras):
+    '''         
+    La función recibe una lista de palabras y las concatena.
+    
+    Parámetros:
+        -palabras (list): Lista de palabras a concatenar.
+    
+    Return:
+        -str: Cadena resultante de la concatenación de las palabras.
+    '''
+    lista_concatenada = reduce(lambda palabra1, palabra2: palabra1 + ' ' + palabra2, palabras)
+    return lista_concatenada
+
+#Caso de uso:
+palabras = ['Estoy', 'en', 'la', 'mitad', 'de', 'las', 'katas']
+concatena_palabras(palabras) 
+
+
