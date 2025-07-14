@@ -365,8 +365,8 @@ def palabras_con_letra(palabras, letra):
     #       if palabra.startswith(letra):
     #           resultado.append(palabra)
     #   return resultado
-    # Las funciones lambda y en este caso filter() son más concisas, aunque pueden ser a veces menos legibles para principiantes 
-    # y se pueden ser complejas si no lo fragmentamos.
+    # Las funciones lambda y en este caso filter() son más concisas, aunque pueden ser a veces menos legibles
+    # y pueden ser complejas si no lo fragmentamos.
 
 #Caso de uso:
 lista_palabras = ["manzana", "banana", "cereza", "mango", "pera"]
@@ -641,4 +641,137 @@ calculo_resto = lambda x, y: x % y
 n1 = 10
 n2 = 9
 calculo_resto(n1, n2) 
+
+
+# 27) Crea una función que calcule el promedio de una lista de números.
+def calcular_promedio(lista_numeros):
+    '''
+    La función recibe una lista de números y calcula su promedio.
+    
+    Parámetros:
+        -lista_numeros (list): Lista de números a procesar.
+    
+    Return:
+        -float: Promedio de los números en la lista.
+    '''
+    if not lista_numeros:  
+        return 0
+    else:
+        promedio = sum(lista_numeros) / len(lista_numeros)
+        return promedio
+    
+# Caso de uso:
+numeros = [10, 20, 30, 40, 50]
+calcular_promedio(numeros)
+
+
+#28) Crea una función que busque y devuelva el primer elemento duplicado en una lista dada.
+def primer_elemento_duplicado(lista):
+    '''
+    La función recibe una lista y devuelve el primer elemento duplicado encontrado.
+    
+    Parámetros:
+        -lista (list): Lista de elementos a procesar.
+    
+    Return:
+        -any: Primer elemento duplicado encontrado o None si no hay duplicados.
+    '''
+    vistos = set()  # Usamos un conjunto para rastrear los elementos vistos
+    for elemento in lista:
+        if elemento in vistos:
+            return elemento #Si elemento duplicado retorna ese valor y rompe bucle
+        vistos.add(elemento) #Si no rompe el bucle, sigue y va añadiendo los elementos al conjunto
+             
+    return None  # Si no hay duplicados, no retorna nada (None)
+
+#Caso de uso:
+lista1 = ['oso', 'polo', 'solo', 'polo', 'foro']
+primer_elemento_duplicado(lista1)
+
+
+# 29) Crea una función que convierta una variable en una cadena de texto y enmascare todos los caracteres  con el 
+# carácter '#', excepto los últimos cuatro.   
+def enmascarar_cadena(variable):
+
+    cadena_texto = str(variable)  # Convertimos la variable a cadena de texto
+    '''
+    La función recibe una cadena de texto y enmascara todos los caracteres con '#', 
+    excepto los últimos cuatro.
+    
+    Parámetros:
+        -variable (any): Variable a convertir en cadena de texto y procesar.
+        -cadena_texto (str): Cadena de texto convertida de la variable.
+    
+    Return:
+        -str: Cadena enmascarada con '#' excepto los últimos cuatro caracteres.
+    '''
+    if len(cadena_texto) <= 4:
+        return cadena_texto  # Si la cadena tiene 4 o menos caracteres, no se enmascara
+    else:
+        parte_enmascarada = '#' * (len(cadena_texto) - 4)  # Enmascara todo menos los últimos cuatro
+        parte_visible = cadena_texto[-4:]  # Obtiene los últimos cuatro caracteres
+        return parte_enmascarada + parte_visible  # Enmascara todo menos los últimos cuatro  
+
+
+#Caso de uso:
+x = 11111111
+enmascarar_cadena(x)
+
+
+# 30) Crea una función que determine si dos palabras son anagramas, es decir, si están formadas por 
+# las mismas letras pero en diferente orden.
+
+def son_anagramas(palabra1, palabra2):
+    '''
+    La función recibe dos palabras y determina si son anagramas, es decir, si están formadas 
+    por las mismas letras pero en diferente orden.
+    
+    Parámetros:
+        -palabra1 (str): Primera palabra a comparar.
+        -palabra2 (str): Segunda palabra a comparar.
+    
+    Return:
+        -bool: True si son anagramas, False en caso contrario.
+    '''
+    # Comparamos las palabras, conviertiendo en minuscula y ordenando sus letras
+    return sorted(palabra1.lower()) == sorted(palabra2.lower())
+
+# Caso de uso:
+palabra1 = "Amor"
+palabra2 = "roma"
+son_anagramas(palabra1, palabra2)
+
+
+# 31) Crea una función que solicite al usuario ingresar una lista de nombres y luego solicite un nombre 
+# para buscar en esa lista. Si el nombre está en la lista, se imprime un mensaje indicando que fue encontrado, 
+# de lo contrario, se lanza una excepción.
+
+def buscar_nombre():
+    '''
+    La función solicita al usuario ingresar una lista de nombres y luego un nombre para buscar en esa lista. 
+    Si el nombre está en la lista, imprime un mensaje indicando que fue encontrado, de lo contrario, lanza una excepción.
+    
+    Parámetros:
+        -nombres (list): Lista de nombres ingresada por el usuario.
+        -nombre_buscado (str): Nombre a buscar en la lista.
+    
+    Return:
+        -str: Mensaje indicando si el nombre fue encontrado o no.
+    '''
+    try: #englobaremos todo en un try-except para manejar excepcion si no se encuentra el nombre
+        nombres = input("Ingresa una lista de nombres separados por comas: ").split(",")  # Solicita al usuario ingresar nombres
+        nombre_buscado = input("Ingresa el nombre a buscar: ").strip()  # Solicita el nombre a buscar quitando espacios al inicio y final, que haya podido poner el usuario en cada nombre
+        
+        if nombre_buscado in nombres:
+            return print(f'El nombre "{nombre_buscado}" fue encontrado en la lista.')
+        else:
+            raise ValueError(f'El nombre "{nombre_buscado}" no se encuentra en la lista.')
+    
+    except ValueError as e:
+        return print(e)  # Imprime el mensaje de error si el nombre no se encuentr
+    
+
+
+
+
 
