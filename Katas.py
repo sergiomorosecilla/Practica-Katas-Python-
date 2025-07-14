@@ -759,8 +759,10 @@ def buscar_nombre():
         -str: Mensaje indicando si el nombre fue encontrado o no.
     '''
     try: #englobaremos todo en un try-except para manejar excepcion si no se encuentra el nombre
-        nombres = input("Ingresa una lista de nombres separados por comas: ").split(",")  # Solicita al usuario ingresar nombres
-        nombre_buscado = input("Ingresa el nombre a buscar: ").strip()  # Solicita el nombre a buscar quitando espacios al inicio y final, que haya podido poner el usuario en cada nombre
+        # Solicita al usuario ingresar nombres
+        nombres = input("Ingresa una lista de nombres separados por comas: ").split(",")  
+        # Solicita el nombre a buscar quitando espacios al inicio y final, que haya podido poner el usuario en cada nombre
+        nombre_buscado = input("Ingresa el nombre a buscar: ").strip()  
         
         if nombre_buscado in nombres:
             return print(f'El nombre "{nombre_buscado}" fue encontrado en la lista.')
@@ -771,7 +773,52 @@ def buscar_nombre():
         return print(e)  # Imprime el mensaje de error si el nombre no se encuentr
     
 
+# 32) Crea una función que tome un nombre completo y una lista de empleados, busque el nombre completo en la lista y 
+# devuelve el puesto del empleado si está en la lista, de lo contrario, devuelve un mensaje indicando que la persona 
+# no trabaja aquí.
+
+def buscar_empleado(nombre_completo, empleados):
+    '''
+    La función recibe un nombre completo y una lista de empleados, busca el nombre completo en la lista 
+    y devuelve el puesto del empleado si está en la lista, de lo contrario, devuelve un mensaje indicando que la persona no trabaja aquí.
+    
+    Parámetros:
+        -nombre_completo (str): Nombre completo del empleado a buscar.
+        -empleados (list): Lista de empleados con sus nombres y puestos.
+    
+    Return:
+        -str: Puesto del empleado si se encuentra, o mensaje indicando que no trabaja aquí.
+    '''
+    for empleado in empleados:
+        if empleado['nombre'] == nombre_completo:
+            return f'El puesto de {nombre_completo} es: {empleado["puesto"]}'
+    
+    return f'{nombre_completo} no trabaja aquí.'  # Si no se encuentra el nombre, devuelve este mensaje
+
+# Caso de uso:
+empleados = [
+    {"nombre": "Juan Pérez", "puesto": "Gerente"},
+    {"nombre": "Ana García", "puesto": "Desarrolladora"},
+    {"nombre": "Carlos López", "puesto": "Diseñador"},
+    {"nombre": "María Rodríguez", "puesto": "Analista de Datos"}
+]
+nombre_buscado = "Ana García"
+resultado = buscar_empleado(nombre_buscado, empleados)
+print(resultado)
 
 
-
-
+# 33) Crea una función  lambda  que sume elementos correspondientes de dos listas dadas.
+def suma_listas (lista1, lista2):    
+    '''    La función recibe dos listas y devuelve una nueva lista con la suma de los elementos correspondientes.
+    Parámetros:
+        -lista1 (list): Primera lista de números.
+        -lista2 (list): Segunda lista de números.
+    Return:
+        -list: Nueva lista con la suma de los elementos correspondientes de las dos listas.
+    '''
+    suma = list(map(lambda x, y: x + y, lista1, lista2))
+    return suma
+# Caso de uso:
+lista1 = [1, 2, 3]
+lista2 = [4, 5, 6]
+suma_listas(lista1, lista2)
