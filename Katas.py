@@ -822,3 +822,203 @@ def suma_listas (lista1, lista2):
 lista1 = [1, 2, 3]
 lista2 = [4, 5, 6]
 suma_listas(lista1, lista2)
+
+
+'''34) Crea la clase  Arbol , define un árbol genérico con un tronco y ramas como atributos. Los métodos disponibles son: 
+crecer_tronco ,  nueva_rama ,  crecer_ramas ,  quitar_rama  e  info_arbol . El objetivo es implementar estos métodos para 
+manipular la estructura del árbol.
+Código a seguir:
+1. Inicializar un árbol con un tronco de longitud 1 y una lista vacía de ramas.
+2. Implementar el método  crecer_tronco  para aumentar la longitud del tronco en una unidad.
+3. Implementar el método  nueva_rama  para agregar una nueva rama de longitud 1 a la lista de ramas.
+4. Implementar el método  crecer_ramas  para aumentar en una unidad la longitud de todas las ramas existentes.
+5. Implementar el método  quitar_rama  para eliminar una rama en una posición específica.
+6. Implementar el método 
+info_arbol  para devolver información sobre la longitud del tronco, el número de ramas y las longitudes de las 
+mismas.
+'''
+
+class Arbol:
+
+    def __init__(self, tronco = 1, ramas = []):
+        '''
+        Inicializa un árbol con un tronco de longitud 1 y una lista vacía de ramas.
+        
+        Parámetros:
+            -tronco (int): Longitud del tronco del árbol. Inicializamos en 1 por defecto.
+            -ramas (list): Lista de ramas del árbol. Inicializamos como una lista vacía por defecto.
+        '''
+        self.tronco = tronco
+        self.ramas = ramas
+
+
+#Metodos:
+
+    def crecer_tronco(self):
+        '''
+        Metodo para aumentar la longitud del tronco en una unidad.
+    
+        Parámetros:
+            -self: Instancia de la clase Arbol.
+        
+        Return:
+            -str: Mensaje indicando que el tronco ha crecido y su longitud actual.
+        '''
+        self.tronco += 1  # Incrementa la longitud del tronco en 1
+        return print(f'El tronco ha crecido. Longitud actual: {self.tronco}')
+
+    def nueva_rama(self):
+        '''
+        Método para agregar una nueva rama de longitud 1 a la lista de ramas.
+
+        Parámetros:
+            -self: Instancia de la clase Arbol.
+        
+        Return:
+            -str: Mensaje indicando que se ha añadido una nueva rama y su longitud actual.
+        '''
+        self.ramas.append(1)  # Agrega una nueva rama de longitud 1 a la lista de ramas
+        return print(f'Se ha añadido una nueva rama. Ahora el árbol tiene: {len(self.ramas)} ramas')
+
+
+    def crecer_ramas(self):
+        '''
+        Método para aumentar en una unidad la longitud de todas las ramas existentes.
+        
+        Parámetros:
+            -self: Instancia de la clase Arbol.
+
+        Return:
+            -str: Mensaje indicando que las ramas han crecido y sus longitudes actuales.
+        '''
+        self.ramas = [rama + 1 for rama in self.ramas]
+        return print(f'Las ramas han crecido. Las ramas ahora miden: {self.ramas}')
+
+
+    def quitar_rama(self, posicion):
+        '''
+        Método para eliminar una rama en una posición específica.
+        
+        Parámetros:
+            -self: Instancia de la clase Arbol.
+            -posicion (int): Posición de la rama a eliminar (0-indexed).
+        
+        Return:
+            -str: Mensaje indicando que se ha quitado la rama y las longitudes restantes de las ramas.
+        '''
+        if 0 <= posicion < len(self.ramas):
+            self.ramas.pop(posicion)
+
+        return print(f'Se ha quitado la rama en la posición {posicion}. Las ramas miden ahora: {self.ramas}')
+
+    def info_arbol(self):
+
+        '''
+        Método para devolver información sobre la longitud del tronco, el número de ramas y las longitudes de las mismas.
+        
+        Parámetros:
+            -self: Instancia de la clase Arbol.
+        
+        Return:
+            -str: Información del árbol incluyendo la longitud del tronco, el número de ramas y sus longitudes.
+        '''
+
+        return (f'Inforación del árbol:\n   Tronco mide: {self.tronco},\n   Número de ramas: {len(self.ramas)},\n   Longitudes de las ramas: {self.ramas}')         
+        
+#Caso de uso:
+#1. Crear un árbol.
+pino = Arbol()
+#2. Hacer crecer el tronco del árbol una unidad.
+pino.crecer_tronco()
+#3. Añadir una nueva rama al árbol.
+pino.nueva_rama()
+#4. Hacer crecer todas las ramas del árbol una unidad.
+pino.crecer_ramas()
+#5. Añadir dos nuevas ramas al árbol.
+pino.nueva_rama()
+pino.nueva_rama()
+#6. Retirar la rama situada en la posición 2.
+pino.quitar_rama(2)
+#7. Obtener información sobre el árbol.
+print(pino.info_arbol())
+
+
+'''36) Crea la clase  UsuarioBanco ,representa a un usuario de un banco con su nombre, saldo y si tiene o no cuenta 
+corriente. Proporciona métodos para realizar operaciones como retirar dinero, transferir dinero desde otro usuario y 
+agregar dinero al saldo.
+Código a seguir:
+1.Inicializar un usuario con su nombre, saldo y si tiene o no cuenta corriente mediante  True  y  False .
+2.Implementar el método  retirar_dinero  para retirar dinero del saldo del usuario. Lanzará un error en caso de no 
+poder hacerse.
+3.Implementar el método  transferir_dinero  para realizar una transferencia desde otro usuario al usuario actual. 
+Lanzará un error en caso de no poder hacerse.
+4.Implementar el método  agregar_dinero  para agregar dinero al saldo del usuario.'''
+
+class UsuarioBanco:
+    def __init__(self, nombre, saldo=0, cuenta_corriente=False):
+        '''
+        Inicializa un usuario con su nombre, saldo y si tiene o no cuenta corriente.
+        
+        Parámetros:
+            -nombre (str): Nombre del usuario.
+            -saldo (float): Saldo inicial del usuario. Por defecto es 0.
+            -cuenta_corriente (bool): Indica si el usuario tiene cuenta corriente. Por defecto es False.
+        '''
+        self.nombre = nombre
+        self.saldo = saldo
+        self.cuenta_corriente = cuenta_corriente
+
+    def retirar_dinero(self, cantidad):
+        '''
+        Método para retirar dinero del saldo del usuario. Lanza un error si no se puede hacer.
+        
+        Parámetros:
+            -cantidad (float): Cantidad a retirar del saldo.
+        
+        Return:
+            -str: Mensaje indicando que la retirada fue exitosa.
+        
+        Control excepciones:
+            - ValueError: Si la cantidad a retirar es mayor que el saldo disponible.
+        '''
+        if cantidad > self.saldo:
+            raise ValueError(f'No se puede retirar {cantidad}. Saldo insuficiente.')
+        self.saldo -= cantidad
+        return f'Retirada de {cantidad} correcta. Saldo actual: {self.saldo}'
+
+    def transferir_dinero(self, usuario_emisor, cantidad):
+        '''
+        Método para realizar una transferencia desde otro usuario al usuario actual. Lanza un error si no se puede hacer.
+        
+        Parámetros:
+            -usuario_emisor (UsuarioBanco): Usuario desde el cual se realiza la transferencia.
+            -cantidad (float): Cantidad a transferir al usuario actual.
+        
+        Return:
+            -str: Mensaje indicando que la transferencia fue exitosa.
+        
+        Control excepciones:
+            - ValueError: Si la cantidad a transferir es mayor que el saldo del usuario emisor o si no tiene cuenta corriente.
+        '''
+        if not usuario_emisor.cuenta_corriente:
+            raise ValueError(f'{usuario_emisor.nombre} no tiene cuenta corriente para realizar transferencias.')
+        if cantidad > usuario_emisor.saldo:
+            raise ValueError(f'No se puede transferir {cantidad} desde {usuario_emisor.nombre}. Saldo insuficiente.')
+        
+        usuario_emisor.saldo -= cantidad
+        self.saldo += cantidad
+
+#Caso de uso:
+#1.Crear dos usuarios: "Alicia" con saldo inicial de 100 y "Bob" con saldo inicial de 50, ambos con cuenta corriente.
+Alicia = UsuarioBanco("Alicia", saldo=100, cuenta_corriente=True)
+Bob = UsuarioBanco("Bob", saldo=50, cuenta_corriente=True)
+#2.Agregar 20 unidades de saldo de "Bob".
+Bob.saldo += 20
+#3.Hacer una transferencia de 80 unidades desde "Bob" a "Alicia".
+Alicia.transferir_dinero(Bob, 80)
+#4.Retirar 50 unidades de saldo a "Alicia".
+Alicia.retirar_dinero(50)
+
+# El codigo para con un "ValueError: No se puede transferir 80 desde Bob. Saldo insuficiente., ya que
+# se intenta transferir desde Bob mas del saldo que tiene."
+
