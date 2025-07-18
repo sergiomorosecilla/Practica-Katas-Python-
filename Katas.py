@@ -452,7 +452,7 @@ def calificacion_alta(estudiante):
         -list: Lista de estudiantes aprobados (calificación >= 90).
     '''
     # Utilizamos filter() para filtrar los estudiantes con calificación >= 90
-    estudiantes_destacados = list(filter(lambda estudiante: estudiante['calificacion'] >= 90, estudiantes))
+    estudiantes_destacados = list(filter(lambda estudiante: estudiante['calificacion'] >= 90, estudiante))
     return estudiantes_destacados
 
 # Caso de uso:
@@ -644,7 +644,7 @@ calculo_resto(n1, n2)
 
 
 # 27) Crea una función que calcule el promedio de una lista de números.
-def calcular_promedio(lista_numeros):
+def calculo_promedio(lista_numeros):
     '''
     La función recibe una lista de números y calcula su promedio.
     
@@ -662,7 +662,7 @@ def calcular_promedio(lista_numeros):
     
 # Caso de uso:
 numeros = [10, 20, 30, 40, 50]
-calcular_promedio(numeros)
+calculo_promedio(numeros)
 
 
 #28) Crea una función que busque y devuelva el primer elemento duplicado en una lista dada.
@@ -1022,3 +1022,82 @@ Alicia.retirar_dinero(50)
 # El codigo para con un "ValueError: No se puede transferir 80 desde Bob. Saldo insuficiente., ya que
 # se intenta transferir desde Bob mas del saldo que tiene."
 
+
+'''37) Crea una función llamada  procesar_texto  que procesa un texto según la opción especificada:  contar_palabras , 
+reemplazar_palabras ,  eliminar_palabra . Estas opciones son otras funciones que tenemos que definir primero y llamar dentro 
+de la función  procesar_texto .
+Código a seguir:
+1.Crear una función  contar_palabras  para contar el número de veces que aparece cada palabra en el texto. Tiene 
+que devolver un diccionario.
+2.Crear una función  reemplazar_palabras  para remplazar una  palabra_original  del texto por una  palabra_nueva . Tiene 
+que devolver el texto con el remplazo de palabras.
+3.Crear una función  eliminar_palabra  para eliminar una palabra del texto. Tiene que devolver el texto con la palabra 
+eliminada.
+4.Crear la función  procesar_texto  que tome un texto, una opción(entre "contar", "reemplazar", "eliminar") y un 
+número de argumentos variable según la opción indicada.'''
+
+
+# 38) Genera un programa que nos diga si es de noche, de día o tarde según la hora proporcionada por el usuario.
+
+def parte_dia(hora):
+    '''
+     Esta función determina si es de día, noche o tarde según la hora proporcionada.
+
+    Parámetros:
+        -hora (int): Hora del día en formato 24 horas (0-23).
+
+    Return:
+        -str: Mensaje indicando si es de día, tarde o noche.
+    
+    '''  
+    if hora < 0 or hora > 23:
+        raise ValueError(f'No has introducido una hora válida')
+
+    if hora >= 6 and hora < 12:
+        return f'Si me dices que la hora es {hora}, entonces es de día'
+    
+    elif hora >= 12 and hora < 18:
+        return f'Si me dices que la hora es {hora}, entonces es de tarde'
+    
+    elif hora >= 18 or hora < 6:
+        return f'Si me dices que la hora es {hora}, entonces es de noche'
+
+def main():
+    """
+    Función principal que solicita la hora al usuario y muestra el resultado.
+    """
+    hora = int(input("Introduce la hora (0-23): "))
+    resultado = parte_dia(hora)
+    print(resultado)
+# Llamada a la función principal para ejecutar el programa
+if __name__ == "__main__":
+    main()
+
+
+# 39) Escribe un programa que determine qué calificación en texto tiene un alumno en base a su calificación numérica. 
+# Las reglas de calificación son: de 0-69 insuficiente, de 70-79 bien, de 80-89 muy bien, de 90-100 excelente
+
+def calificacion(nota):
+    '''
+    Esta función determina la calificación en texto de un alumno en base a su calificación num
+
+    Parámetro:
+        - nota (int): La nota del alumno
+
+    Return:
+        - str: La calificación en texto del alumno (Insuficiente, Bien, Muy Bien, Excelente)
+    '''
+    if nota < 0 or nota > 100:
+        raise ValueError (f'Introducir una nota entre 0 y 100')
+    elif nota < 70:
+        return "Insuficiente"
+    elif nota >= 70 and nota < 80:
+        return "Bien"
+    elif nota >= 80 and nota < 90:
+        return "Muy Bien"
+    else:
+        return "Excelente"
+    
+# Caso de uso:
+nota_alumno = 85    
+print(calificacion(nota_alumno))  # Salida: Muy Bien
