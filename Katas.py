@@ -1240,7 +1240,7 @@ def calcular_precio_final():
     cupon = input('Tiene cupón descuento (S/N): ')
 
     if cupon.lower() == 'n':
-        print(f'No tien cupón de descuento por lo que el precio es igual a {precio_arcticulo}€')
+        print(f'No tien cupón de descuento por lo que el precio es igual a {precio_articulo}€')
 
     if cupon.lower() == 's':
         descuento = float(input('Ingrese el valor del cupón: '))
