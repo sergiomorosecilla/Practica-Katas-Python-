@@ -1035,6 +1035,78 @@ que devolver el texto con el remplazo de palabras.
 eliminada.
 4.Crear la función  procesar_texto  que tome un texto, una opción(entre "contar", "reemplazar", "eliminar") y un 
 número de argumentos variable según la opción indicada.'''
+def contar_palabras(texto):
+    '''
+    La función recibe un texto y cuenta el número de veces que aparece cada palabra en él.
+    Parámetros:
+        -texto (str): Texto a procesar.
+    Return:
+        -dict: Diccionario con las palabras como claves y sus conteos como valores.
+    '''
+    palabras = texto.split()
+    conteo = {}
+    for palabra in palabras:
+        palabra = palabra.strip('.,!?¡¿').lower() # Elimina puntuación y convierte a minúsculas
+        conteo[palabra] = conteo.get(palabra, 0) + 1 
+    return conteo
+
+def reemplazar_palabras(texto, palabra_original, palabra_nueva):
+    '''
+    La función recibe un texto y reemplaza una palabra original por una nueva.
+    Parámetros:
+        -texto (str): Texto a procesar.
+        -palabra_original (str): Palabra a reemplazar.
+        -palabra_nueva (str): Nueva palabra que reemplazará a la original.
+    Return:
+        -str: Texto con la palabra reemplazada.
+    '''
+    return texto.replace(palabra_original, palabra_nueva)
+
+def eliminar_palabra(texto, palabra_a_eliminar):
+    '''
+    La función recibe un texto y elimina una palabra específica de él.
+    Parámetros:
+        -texto (str): Texto a procesar.
+        -palabra_a_eliminar (str): Palabra a eliminar.
+    Return:
+        -str: Texto con la palabra eliminada.
+    '''
+    palabras = texto.split()
+    palabras_filtradas = [p for p in palabras if p != palabra_a_eliminar]
+    return ' '.join(palabras_filtradas)
+
+def procesar_texto(texto, opcion, **kwargs):
+    '''
+    La función recibe un texto, una opción y argumentos adicionales según la opción indicada.
+    Parámetros:
+        -texto (str): Texto a procesar.
+        -opcion (str): Opción de procesamiento ("contar", "reemplazar", "eliminar").
+        -kwargs (dict): Argumentos adicionales según la opción.
+    Return:
+        -str o dict: Resultado del procesamiento según la opción.
+    '''
+    if opcion == "contar":
+        return contar_palabras(texto)
+    
+    elif opcion == "reemplazar":
+        palabra_original = kwargs.get("palabra_original")
+        palabra_nueva = kwargs.get("palabra_nueva")
+        if not palabra_original or not palabra_nueva:
+            return "Error: Se requieren 'palabra_original' y 'palabra_nueva'."
+        return reemplazar_palabras(texto, palabra_original, palabra_nueva)
+    
+    elif opcion == "eliminar":
+        palabra = kwargs.get("palabra") 
+        if not palabra:
+            return "Error: La palabra indicada no se encuentra en el texto."
+        return eliminar_palabra(texto, palabra)
+    
+    else:
+        return "Opción no válida. Usa 'contar', 'reemplazar' o 'eliminar'."
+# Caso de uso:
+texto = "Hola, mundo! Hola a todos. Bienvenidos al mundo de Python."
+resultado_contar = procesar_texto(texto, "contar")
+
 
 
 # 38) Genera un programa que nos diga si es de noche, de día o tarde según la hora proporcionada por el usuario.
@@ -1101,3 +1173,86 @@ def calificacion(nota):
 # Caso de uso:
 nota_alumno = 85    
 print(calificacion(nota_alumno))  # Salida: Muy Bien
+
+
+# 40) Escribe una función que tome dos parámetros:  figura  (una cadena que puede ser  "rectangulo" ,  "circulo"  o 
+# triangulo" ) y  datos  (una tupla con los datos necesarios para calcular el área de la figura).
+
+def calcular_area(figura, datos):
+    '''
+    Esta función calcula el área de una figura geométrica según el tipo de figura y los datos proporcionados.
+
+    Parámetros:
+        - figura (str): Tipo de figura ("rectangulo", "circulo" o "triangulo").
+        - datos (tuple): Datos necesarios para calcular el área de la figura.
+    
+    Return:
+        - float: Área de la figura calculada.
+    
+    Control excepciones:
+        - ValueError: Si la figura no es válida o los datos no son suficientes.
+    '''
+    if figura == "rectangulo":
+        if len(datos) != 2:
+            raise ValueError("Para un rectángulo se necesitan dos datos: base y altura.")
+        base, altura = datos
+        return base * altura
+    
+    elif figura == "circulo":
+        if len(datos) != 1:
+            raise ValueError("Para un círculo se necesita un dato: radio.")
+        radio = datos[0]  # Extraemos el valor del indice de la lista para solventar 
+        #"TypeError: unsupported operand type(s) for ** or pow(): 'list' and 'int', 
+        # que nos daba declarando radio = datos"
+        return 3.14159 * radio ** 2
+    
+    elif figura == "triangulo":
+        if len(datos) != 2:
+            raise ValueError("Para un triángulo se necesitan dos datos: base y altura.")
+        base, altura = datos
+        return (base * altura) / 2
+    
+    else:
+        raise ValueError("Figura no válida. Debe ser 'rectangulo', 'circulo' o 'triangulo'.")
+    
+# Caso de uso:
+
+figura = "circulo"
+datos = [3, 10]
+print(calcular_area(figura, datos))
+
+
+'''41) En este ejercicio, se te pedirá que escribas un programa en Python que utilice condicionales para determinar el 
+monto final de una compra en una tienda en línea, después de aplicar un descuento. El programa debe hacer lo 
+siguiente:
+1. Solicita al usuario que ingrese el precio original de un artículo.
+2. Pregunta al usuario si tiene un cupón de descuento (respuesta sí o no).
+3. Si el usuario responde que sí, solicita que ingrese el valor del cupón de descuento.
+4. Aplica el descuento al precio original del artículo, siempre y cuando el valor del cupón sea válido (es decir, mayor 
+a cero). Por ejemplo, descuento de 15€. 
+5. Muestra el precio final de la compra, teniendo en cuenta el descuento aplicado o sin él. 
+6. Recuerda utilizar estructuras de control de flujo como if, elif y else para llevar a cabo estas acciones en tu 
+programa de Python.'''
+
+def calcular_precio_final():
+
+    precio_articulo = float(input('Ingresa el precio del artículo en (€): '))
+    cupon = input('Tiene cupón descuento (S/N): ')
+
+    if cupon.lower() == 'n':
+        print(f'No tien cupón de descuento por lo que el precio es igual a {precio_arcticulo}€')
+
+    if cupon.lower() == 's':
+        descuento = float(input('Ingrese el valor del cupón: '))
+        if descuento < 0:
+            raise ValueError('El valor del cupón no puede ser negativo')
+        else:
+            precio_final = precio_articulo - descuento
+            print(f'El precio del artículo con el cupón de descuento de {descuento}€ es de {precio_final}€')
+
+
+#Caso de uso:
+if __name__ == "__main__":
+    calcular_precio_final()
+
+
